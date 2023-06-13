@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block metadescription %}
+    School Store...
+{% endblock %}
+{% block title %}
+School Store....
+
+{% endblock %}
+
+{% block content %}
+<!--<div>-->
+<!--    <br>-->
+<!--</div>-->
+<!--<div class="col-sm-2">-->
+<!--    <button type="submit" class="btn btn-outline-success"><i class="fa fa-search"></i>Click here</button>-->
+<!--</div>-->
+
+<button id="showFormBtn">Show Form</button>
+
+<form id="registrationForm" style="display: none;" action="{% url 'store:postlogin' %}" method="POST">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input type="submit" value="Submit">
+</form>
+
+<script>
+  document.getElementById("showFormBtn").addEventListener("click", function() {
+    document.getElementById("registrationForm").style.display = "block";
+  });
+</script>
+<div>
+    <br>
+    <br>
+</div>
+{% for msg in messages %}
+<h2>{{msg}}</h2>
+{% endfor %}
+<a href="{% url 'store:home' %}">Home Page</a>
+<a href="{% url 'credentials:login' %}">Log Out</a>
+{% endblock %}
